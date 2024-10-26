@@ -20,13 +20,10 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUsuario;
-	
 	@Column(nullable = false, unique = true)
 	private String nomeUsuario;
-	
 	@Column(nullable = false)
 	private String senha;
-	
 	@Column(nullable = false)
 	private String email;
 

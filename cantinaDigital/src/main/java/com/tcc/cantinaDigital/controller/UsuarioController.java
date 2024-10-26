@@ -33,7 +33,8 @@ public class UsuarioController {
         Usuario usuario = usuarioRepository.findByNomeUsuario(nomeUsuario);
         modelo.addAttribute("nomeUsuario", usuario.getNomeUsuario());
         modelo.addAttribute("emailUsuario", usuario.getEmail());
-        
+        modelo.addAttribute("idUsuario", usuario.getIdUsuario());
+
 		return "MenuUsuario";
 	}
 	
@@ -80,7 +81,19 @@ public class UsuarioController {
 	    }
 	}
 	
-
+	@PostMapping("/excluirUsuario/{id}")
+	public String excluirUsuario(@PathVariable("id") Long id, Model modelo) {
+	    Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
+	    
+	    if (usuarioOpt.isPresent()) {
+	        usuarioRepository.delete(usuarioOpt.get());
+	        modelo.addAttribute("mensagem", "Usuário excluído com sucesso.");
+	    } else {
+	        modelo.addAttribute("mensagem", "Usuário não encontrado.");
+	    }
+	    
+	    return "redirect:/login";
+	}
 	
 	@GetMapping("/favoritos")
 	public String favoritos() {
