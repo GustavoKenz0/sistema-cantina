@@ -52,7 +52,6 @@ public class UsuarioController {
 	    
 	    return "EditarPerfil";
 	}
-
 	
 	@PostMapping("/editarUsuario/{id}")
 	public String editarUsuario(@PathVariable("id") Long id, @ModelAttribute Usuario usuario, Model modelo) {

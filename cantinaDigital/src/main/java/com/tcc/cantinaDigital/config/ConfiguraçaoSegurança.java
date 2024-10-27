@@ -8,9 +8,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.tcc.cantinaDigital.service.DetalhesUsuarioService;
-
 
 @Configuration
 public class ConfiguraçaoSegurança {
@@ -35,10 +35,10 @@ public class ConfiguraçaoSegurança {
                     .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                     .anyRequest().authenticated()
             )
-            .formLogin((form) ->
+            .formLogin((form) -> 
                 form
                     .loginPage("/login")
-                    .defaultSuccessUrl("/menuPedidos", true)
+                    .successHandler(customSuccessHandler())
                     .permitAll()
             )
             .logout((logout) -> logout
@@ -48,8 +48,14 @@ public class ConfiguraçaoSegurança {
                     .deleteCookies("JSESSIONID")
                     .permitAll()
             );
+
         http.csrf().disable();
-		http.headers().frameOptions().disable();
+        http.headers().frameOptions().disable();
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler customSuccessHandler() {
+        return new Autenticaçao();
     }
 }

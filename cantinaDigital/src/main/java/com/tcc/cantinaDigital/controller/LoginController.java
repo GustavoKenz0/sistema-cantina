@@ -37,8 +37,19 @@ public class LoginController {
 	
 	@PostMapping("/login")
 	public String login(@ModelAttribute Usuario usuario, Model modelo) {
-	    return "redirect:/menuPedidos";
+	    Usuario usuarioEncontrado = usuarioRepository.findByNomeUsuario(usuario.getNomeUsuario());
+	    
+	    if (usuarioEncontrado != null && encoderSenha.matches(usuario.getSenha(), usuarioEncontrado.getSenha())) {
+	        if ("adm".equals(usuarioEncontrado.getNomeUsuario())) {
+	            return "redirect:/cadastrarProduto";
+	        }
+	        return "redirect:/menuPedidos";
+	    }
+
+	    modelo.addAttribute("mensagem", "Usuário ou senha inválidos!");
+	    return "login";
 	}
+
 	
 	@GetMapping("/criarConta")
 	public String criarConta(Model modelo) {

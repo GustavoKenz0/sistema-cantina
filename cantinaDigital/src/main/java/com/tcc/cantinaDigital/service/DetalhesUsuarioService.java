@@ -17,11 +17,10 @@ import com.tcc.cantinaDigital.model.Papel;
 import com.tcc.cantinaDigital.model.Usuario;
 import com.tcc.cantinaDigital.repository.UsuarioRepository;
 
-
-
 @Service
 public class DetalhesUsuarioService implements UserDetailsService{
-	 @Autowired
+	 
+	@Autowired
 	private UsuarioRepository usuarioRepository;
 
 	 @Override
