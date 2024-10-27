@@ -66,20 +66,27 @@
                 <span>+</span>
             </div>
             <input type="file" class="form-control btn-upload" accept="image/*" id="imageUpload" onchange="previewImage(event)">
-
-            <form>
+            <form th:action="@{/salvarProduto}" th:object="${produto}" method="post">
                 <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Nome" required>
+                    <input type="text" class="form-control" placeholder="Nome" th:field="*{nomeProduto}" required>
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Descrição" required>
+                    <input type="text" class="form-control" placeholder="Descrição" th:field="*{descriçao}" required>
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" placeholder="Preço" required>
+                    <input type="number" class="form-control" placeholder="Preço" th:field="*{preço}" required>
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" placeholder="Quantidade em estoque" required>
+                    <input type="number" class="form-control" placeholder="Quantidade em estoque" th:field="*{estoque}" required>
                 </div>
+                 <div class="mb-3">
+    <label for="tipo" class="form-label"></label>
+      <select id="tipo" th:field="*{tipo}" class="form-control">
+      <option th:each="tipoEnum : ${T(com.tcc.cantinaDigital.model.Tipo).values()}" th:value="${tipoEnum}" th:text="${tipoEnum}">
+      Tipo do produto
+      </option>
+      </select>
+  </div>
                 <button type="submit" class="btn btn-custom">CADASTRAR</button>
             </form>
         </div>
