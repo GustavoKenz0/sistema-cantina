@@ -46,6 +46,27 @@
       color: #000;
     }
     
+    .btn-carrinho {
+            background-color: #f7b500;
+            border: none;
+            color: white;
+            padding: 10px 0;
+            width: 14%;
+            border-radius: 50px;
+            margin-left: auto;
+        }
+             
+        .btn-favoritar {
+            background-color: #c82333;
+            border: none;
+            color: white;
+            padding: 10px 0;
+            width: 7%;
+            border-radius: 50px;
+            margin-left: auto;
+            width: 100px;
+        }
+        
   </style>
 </head>
 <body>
@@ -70,6 +91,12 @@
         <p th:text="${produto.descriçao}">Descrição do produto</p>
         <p class="product-price" th:text="'R$ ' + ${produto.preço}">R$ 0,00</p>
         <p class="product-price" th:text="'Estoque: ' + ${produto.estoque}"></p>
+             <a href="#">
+              <button type="button" class="btn btn-carrinho">Adicionar ao carrinho</button>
+            </a>
+            <a href="#">
+              <button type="button" class="btn btn-favoritar">Favoritar</button>
+            </a>
       </div>
     </div>
 
