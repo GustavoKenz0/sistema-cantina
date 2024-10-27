@@ -16,9 +16,19 @@ public class ProdutoController {
 		return "ListaLanches";
 	}
 	
+	@GetMapping("/LanchesAdm")
+	public String LanchesAdm() {
+		return "LanchesAdm";
+	}
+	
 	@GetMapping("/listaBebidas")
 	public String listarBebidas() {
 		return "ListarBebidas";
+	}
+	
+	@GetMapping("/bebidasAdm")
+	public String bebidasAdm() {
+		return "BebidasAdm";
 	}
 	
 	@GetMapping("/listaDoces")
@@ -26,8 +36,18 @@ public class ProdutoController {
 		return "ListarDoces";
 	}
 	
+	@GetMapping("/docesAdm")
+	public String docesAdm() {
+		return "docesAdm";
+	}
+	
 	@GetMapping("/menuPedidos")
 	public String menuPedidos() {
 		return "MenuPedidos";
+	}
+	
+	@GetMapping("/menuAdm")
+	public String menuAdm() {
+		return "MenuAdm";
 	}
 }

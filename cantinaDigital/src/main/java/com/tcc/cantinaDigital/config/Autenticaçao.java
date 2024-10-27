@@ -16,7 +16,7 @@ public class Autenticaçao implements AuthenticationSuccessHandler{
 	        String username = authentication.getName();
 	        
 	        if ("adm".equals(username)) {
-	            response.sendRedirect("/cadastrarProduto");
+	            response.sendRedirect("/menuAdm");
 	        } else {
 	            response.sendRedirect("/menuPedidos");
 	        }

@@ -33,6 +33,7 @@ public class ConfiguraçaoSegurança {
                 authorize
                     .requestMatchers("/login", "/criarConta", "/error", "/h2-console/**").permitAll()
                     .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                    .requestMatchers("/cadastrarProduto","/menuAdm","/perfilAdm", "/LanchesAdm", "/bebidasAdm", "/docesAdm").hasAuthority("ROLE_ADM")
                     .anyRequest().authenticated()
             )
             .formLogin((form) -> 

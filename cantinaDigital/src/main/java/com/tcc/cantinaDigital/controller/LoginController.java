@@ -41,7 +41,7 @@ public class LoginController {
 	    
 	    if (usuarioEncontrado != null && encoderSenha.matches(usuario.getSenha(), usuarioEncontrado.getSenha())) {
 	        if ("adm".equals(usuarioEncontrado.getNomeUsuario())) {
-	            return "redirect:/cadastrarProduto";
+	            return "redirect:/MenuAdm";
 	        }
 	        return "redirect:/menuPedidos";
 	    }

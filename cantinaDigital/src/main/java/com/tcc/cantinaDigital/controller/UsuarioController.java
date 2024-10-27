@@ -98,4 +98,17 @@ public class UsuarioController {
 	public String favoritos() {
 		return "Favoritos";
 	}
+	
+	@GetMapping("/perfilAdm")
+	public String perfilAdm(Model modelo) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String nomeUsuario = authentication.getName();
+        
+        Usuario usuario = usuarioRepository.findByNomeUsuario(nomeUsuario);
+        modelo.addAttribute("nomeUsuario", usuario.getNomeUsuario());
+        modelo.addAttribute("emailUsuario", usuario.getEmail());
+        modelo.addAttribute("idUsuario", usuario.getIdUsuario());
+
+		return "PerfilAdm";
+	}
 }
