@@ -89,4 +89,10 @@ public class ProdutoController {
 	        return "redirect:/menuAdm";
 	    }
 	}
+	
+	@GetMapping("/excluirProduto/{id}")
+	public String excluirProduto(@PathVariable("id") Long id) {
+		produtoRepository.deleteById(id);
+		return "redirect:/menuAdm";
+	}
 }

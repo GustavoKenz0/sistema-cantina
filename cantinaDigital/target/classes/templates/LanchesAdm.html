@@ -57,6 +57,17 @@
             width: 100px;
         }
     
+    .btn-excluir {
+            background-color: #c82333;
+            border: none;
+            color: white;
+            padding: 10px 0;
+            width: 7%;
+            border-radius: 50px;
+            margin-left: auto;
+            width: 100px;
+        }
+        
   </style>
 </head>
 <body>
@@ -84,9 +95,9 @@
             <a th:href="@{/editarProduto/{id} (id=${produto.id})}">
               <button type="button" class="btn btn-editar">Editar</button>
             </a>
-            <!-- <a th:href="@{/tarefas/excluirTarefa/{id} (id=${tarefa.id})}">
-              <button type="button" class="btn btn-danger">Excluir</button>
-            </a> -->
+            <a th:href="@{/excluirProduto/{id} (id=${produto.id})}">
+              <button type="button" class="btn btn-excluir">Excluir</button>
+            </a>
       </div>
     </div>
 
