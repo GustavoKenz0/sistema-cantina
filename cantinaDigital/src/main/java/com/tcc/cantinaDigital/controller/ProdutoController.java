@@ -1,9 +1,12 @@
 package com.tcc.cantinaDigital.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tcc.cantinaDigital.model.Produto;
@@ -72,5 +75,18 @@ public class ProdutoController {
 	@GetMapping("/menuAdm")
 	public String menuAdm() {
 		return "MenuAdm";
+	}
+	
+	@GetMapping("/editarProduto/{id}")
+	public String editarProduto(@PathVariable("id") Long id, Model modelo) {
+	    Optional<Produto> produtoOpt = produtoRepository.findById(id);
+	    
+	    if(produtoOpt.isPresent()) {
+	        modelo.addAttribute("produto", produtoOpt.get());
+	        return "CadastroProduto";
+	    } else {
+	        modelo.addAttribute("errorMessage", "Produto não encontrado");
+	        return "redirect:/menuAdm";
+	    }
 	}
 }

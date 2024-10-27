@@ -46,6 +46,16 @@
       color: #000;
     }
     
+    .btn-editar {
+            background-color: #f7b500;
+            border: none;
+            color: white;
+            padding: 10px 0;
+            width: 7%;
+            border-radius: 50px;
+            margin-left: auto;
+            width: 100px;
+        }
   </style>
 </head>
 <body>
@@ -70,6 +80,12 @@
         <p th:text="${produto.descriçao}">Descrição do produto</p>
         <p class="product-price" th:text="'R$ ' + ${produto.preço}">R$ 0,00</p>
         <p class="product-price" th:text="'Estoque: ' + ${produto.estoque}"></p>
+            <a th:href="@{/editarProduto/{id} (id=${produto.id})}">
+              <button type="button" class="btn btn-editar">Editar</button>
+            </a>
+            <!-- <a th:href="@{/tarefas/excluirTarefa/{id} (id=${tarefa.id})}">
+              <button type="button" class="btn btn-danger">Excluir</button>
+            </a> -->
       </div>
     </div>
 
