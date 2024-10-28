@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 
 @Entity
@@ -33,6 +34,17 @@ public class Usuario {
 			inverseJoinColumns = @JoinColumn(name="papel_id")
 			)
 	private Set<Papel> papeis = new HashSet<>();
+
+	@ManyToOne(cascade = CascadeType.ALL)
+    private Carrinho carrinho;
+	
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
+	}
 
 	public Usuario() {
 	}

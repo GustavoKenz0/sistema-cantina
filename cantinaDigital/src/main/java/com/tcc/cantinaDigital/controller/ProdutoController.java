@@ -3,6 +3,8 @@ package com.tcc.cantinaDigital.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +13,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tcc.cantinaDigital.model.Produto;
 import com.tcc.cantinaDigital.model.Tipo;
+import com.tcc.cantinaDigital.model.Usuario;
 import com.tcc.cantinaDigital.repository.ProdutoRepository;
+import com.tcc.cantinaDigital.repository.UsuarioRepository;
+import com.tcc.cantinaDigital.service.CarrinhoService;
 
 @Controller
 public class ProdutoController {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+    private CarrinhoService carrinhoService;
 	
 	@GetMapping("/cadastrarProduto")
 	public String cadastrarProduto(Model modelo) {
@@ -36,6 +47,21 @@ public class ProdutoController {
 	    modelo.addAttribute("produtos", produtoRepository.findByTipo(Tipo.Salgado));
 	    return "ListaLanches";
 	}
+	
+	@PostMapping("/adicionarAoCarrinho/{id}")
+	public String adicionarAoCarrinho(@PathVariable("id") Long id) {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String nomeUsuario = authentication.getName();
+	    Usuario usuario = usuarioRepository.findByNomeUsuario(nomeUsuario);
+	   
+	    Optional<Produto> produtoOpt = produtoRepository.findById(id);
+	    if (produtoOpt.isPresent()) {
+	        carrinhoService.adicionarAoCarrinho(usuario.getIdUsuario(), produtoOpt.get());
+	    }
+	    
+	    return "redirect:/carrinho";
+	}
+
 	
 	@GetMapping("/LanchesAdm")
 	public String LanchesAdm(Model modelo) {
@@ -92,6 +118,7 @@ public class ProdutoController {
 	
 	@GetMapping("/excluirProduto/{id}")
 	public String excluirProduto(@PathVariable("id") Long id) {
+		carrinhoService.removerProdutoDosCarrinhos(id);
 		produtoRepository.deleteById(id);
 		return "redirect:/menuAdm";
 	}
