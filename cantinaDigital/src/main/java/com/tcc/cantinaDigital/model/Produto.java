@@ -24,9 +24,18 @@ public class Produto {
 	@Column(nullable=false)
 	@Enumerated(EnumType.STRING)
 	private Tipo tipo;
+	@Column(nullable = true)
+	private String imagemUrl;
 	
 	
-	
+	public String getImagemUrl() {
+		return imagemUrl;
+	}
+
+	public void setImagemUrl(String imagemUrl) {
+		this.imagemUrl = imagemUrl;
+	}
+
 	public Produto() {
 	}
 	

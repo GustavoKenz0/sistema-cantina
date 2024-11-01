@@ -1,5 +1,10 @@
 package com.tcc.cantinaDigital.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +13,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tcc.cantinaDigital.model.Produto;
 import com.tcc.cantinaDigital.model.Tipo;
@@ -37,9 +45,26 @@ public class ProdutoController {
 	}
 	
 	@PostMapping("/salvarProduto")
-	public String salvarProduto(Produto produto) {
-		produtoRepository.save(produto);
-		return "redirect:/menuAdm";
+	public String salvarProduto(@ModelAttribute Produto produto, @RequestParam("imagem") MultipartFile imagem) {
+	    if (!imagem.isEmpty()) {
+	        try {
+	            Path dir = Paths.get(System.getProperty("user.dir"), "images");
+	            if (!Files.exists(dir)) {
+	                Files.createDirectories(dir);
+	            }
+
+	            String imagemPath = dir.resolve(imagem.getOriginalFilename()).toString();
+	            File file = new File(imagemPath);
+	            imagem.transferTo(file);
+
+	            produto.setImagemUrl("/images/" + imagem.getOriginalFilename());
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    produtoRepository.save(produto);
+	    return "redirect:/menuAdm";
 	}
 	
 	@GetMapping("/listaLanches")

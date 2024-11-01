@@ -14,13 +14,13 @@
     <div class="container">
         <div class="form-container">
             <h2 class="form-title">Cadastro de produto</h2>
-            <div class="image-placeholder" id="imagePreview">
+            
+            <form th:action="@{/salvarProduto}" th:object="${produto}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id}"> 
+    <div class="image-placeholder" id="imagePreview">
                 <span>+</span>
             </div>
-            <input type="file" class="form-control btn-upload" accept="image/*" id="imageUpload" onchange="previewImage(event)">
-            
-            <form th:action="@{/salvarProduto}" th:object="${produto}" method="post">
-    <input type="hidden" th:field="*{id}"> 
+            <input type="file" class="form-control btn-upload" accept="image/*" name="imagem" required>
     <div class="mb-3">
         <input type="text" class="form-control" placeholder="Nome" th:field="*{nomeProduto}" required>
     </div>
