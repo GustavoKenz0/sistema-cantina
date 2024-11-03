@@ -25,7 +25,7 @@
     </div>
 
     <div th:each="produto : ${produtos}" class="product-item">
-     <img th:src="@{${produto.imagemUrl}}" alt="Imagem do produto" style="width:100px;height:auto;" onerror="this.onerror=null;this.src='/images/default.png';">
+     <img th:src="@{${produto.imagemUrl}}" alt="Imagem do produto" onerror="this.onerror=null;this.src='/images/default.png';">
       <div class="product-info">
     <h5 th:text="${produto.nomeProduto}">Nome do Produto</h5>
     <p th:text="${produto.descriçao}">Descrição do produto</p>
