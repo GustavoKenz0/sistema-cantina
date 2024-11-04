@@ -50,6 +50,15 @@ public class CarrinhoService {
         }
     }
     
+    public void removerProdutoDosFavoritos(Long produtoId) {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        for (Usuario usuario : usuarios) {
+            usuario.getFavoritos().removeIf(produto -> produto.getId().equals(produtoId));
+            usuarioRepository.save(usuario);
+        }
+    }
+
+    
     public float calcularTotalCarrinho(Long usuarioId) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         Carrinho carrinho = usuario.getCarrinho();
