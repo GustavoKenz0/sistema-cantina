@@ -18,8 +18,17 @@
             <div class="me-auto cart-info">
                 <h5 th:text="${produto.nomeProduto}">Nome do Produto</h5>
                 <p th:text="${produto.descriçao}">Descrição do produto</p>
+                <p class="cart-price" th:text="'R$ ' + ${produto.preço}">R$ 0,00</p>
+                <p th:text="'Estoque: ' + ${produto.estoque}"></p>
             </div>
-            <p class="cart-price" th:text="'R$ ' + ${produto.preço}">R$ 0,00</p>
+            <div class="d-flex ms-2">
+                <form th:action="@{/adicionarAoCarrinho/{id}(id=${produto.id})}" method="post" class="me-2">
+                    <button type="submit" class="btn btn-carrinho">Adicionar ao carrinho</button>
+                </form>
+               <form th:action="@{/excluirFavorito/{id}(id=${produto.id})}" method="post">
+    <button type="submit" class="btn btn-favoritar">Remover</button>
+</form>
+            </div>
         </div>
     </div>
 

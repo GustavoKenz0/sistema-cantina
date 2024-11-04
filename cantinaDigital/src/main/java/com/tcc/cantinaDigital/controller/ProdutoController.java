@@ -102,7 +102,18 @@ public class ProdutoController {
 
 	    return "redirect:/favoritos";
 	}
+	
+	@PostMapping("/excluirFavorito/{id}")
+	public String excluirFavorito(@PathVariable("id") Long id) {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String nomeUsuario = authentication.getName();
+	    Usuario usuario = usuarioRepository.findByNomeUsuario(nomeUsuario);
 
+	    usuario.getFavoritos().removeIf(produto -> produto.getId().equals(id));
+	    usuarioRepository.save(usuario);
+
+	    return "redirect:/favoritos";
+	}
 	
 	@GetMapping("/LanchesAdm")
 	public String LanchesAdm(Model modelo) {
