@@ -87,6 +87,22 @@ public class ProdutoController {
 	    return "redirect:/carrinho";
 	}
 
+	@PostMapping("/favoritar/{id}")
+	public String favoritarProduto(@PathVariable("id") Long id) {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String nomeUsuario = authentication.getName();
+	    Usuario usuario = usuarioRepository.findByNomeUsuario(nomeUsuario);
+
+	    Optional<Produto> produtoOpt = produtoRepository.findById(id);
+	    if (produtoOpt.isPresent()) {
+	        Produto produto = produtoOpt.get();
+	        usuario.getFavoritos().add(produto);
+	        usuarioRepository.save(usuario);
+	    }
+
+	    return "redirect:/favoritos";
+	}
+
 	
 	@GetMapping("/LanchesAdm")
 	public String LanchesAdm(Model modelo) {

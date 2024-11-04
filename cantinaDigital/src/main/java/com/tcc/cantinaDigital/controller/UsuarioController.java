@@ -129,9 +129,15 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/favoritos")
-	public String favoritos() {
-		return "Favoritos";
+	public String mostrarFavoritos(Model modelo) {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String nomeUsuario = authentication.getName();
+	    Usuario usuario = usuarioRepository.findByNomeUsuario(nomeUsuario);
+	    
+	    modelo.addAttribute("favoritos", usuario.getFavoritos());
+	    return "Favoritos";
 	}
+
 	
 	@GetMapping("/perfilAdm")
 	public String perfilAdm(Model modelo) {

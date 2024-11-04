@@ -38,6 +38,20 @@ public class Usuario {
 	@ManyToOne(cascade = CascadeType.ALL)
     private Carrinho carrinho;
 	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "usuario_favoritos",
+            joinColumns = @JoinColumn(name="usuario_id"),
+            inverseJoinColumns = @JoinColumn(name="produto_id"))
+    private Set<Produto> favoritos = new HashSet<>();
+	
+	public Set<Produto> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(Set<Produto> favoritos) {
+		this.favoritos = favoritos;
+	}
+
 	public Carrinho getCarrinho() {
 		return carrinho;
 	}
