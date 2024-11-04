@@ -35,9 +35,9 @@
         <form th:action="@{/adicionarAoCarrinho/{id}(id=${produto.id})}" method="post" class="me-2">
             <button type="submit" class="btn btn-carrinho">Adicionar ao carrinho</button>
         </form>
-        <a href="#">
-            <button type="button" class="btn btn-favoritar">Favoritar</button>
-        </a>
+        <form th:action="@{/favoritar/{id}(id=${produto.id})}" method="post">
+                <button type="submit" class="btn btn-favoritar">Favoritar</button>
+            </form>
     </div>
 </div>
 
