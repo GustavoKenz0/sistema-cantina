@@ -16,21 +16,22 @@
         <h2>Carrinho de Compras</h2>
         <a th:href="@{/menuPedidos}" class="btn btn-voltar">Voltar ao Menu</a>
 
-        <!-- Mensagem de carrinho vazio -->
         <div th:if="${mensagem != null}" class="alert alert-warning" role="alert">
-            <span th:text="${mensagem}"></span>
-        </div>
+    <span th:text="${mensagem}"></span>
+</div>
 
-        <div th:each="item : ${carrinho.produtos}">
-            <div class="cart-item d-flex align-items-center">
-                <img th:src="@{${item.key.imagemUrl}}" alt="Imagem do produto" onerror="this.onerror=null;this.src='/cantinaDigital/images/default.png';" class="cart-item-image">
-                <div class="me-auto cart-info">
-                    <h5 th:text="${item.key.nomeProduto}">Nome do Produto</h5>
-                    <p th:text="'Quantidade: ' + ${item.value}"></p>
-                </div>
-                <p class="cart-price" th:text="'R$ ' + (${item.key.preço} * ${item.value})"></p>
+<div th:if="${carrinho != null && !carrinho.produtos.isEmpty()}">
+    <div th:each="item : ${carrinho.produtos}">
+        <div class="cart-item d-flex align-items-center">
+            <img th:src="@{${item.key.imagemUrl}}" alt="Imagem do produto" onerror="this.onerror=null;this.src='/cantinaDigital/images/default.png';" class="cart-item-image">
+            <div class="me-auto cart-info">
+                <h5 th:text="${item.key.nomeProduto}">Nome do Produto</h5>
+                <p th:text="'Quantidade: ' + ${item.value}"></p>
             </div>
+            <p class="cart-price" th:text="'R$ ' + (${item.key.preço} * ${item.value})"></p>
         </div>
+    </div>
+</div>
 
         <div class="cart-summary" th:text="'Total: R$ ' + ${total}"></div>
 
