@@ -157,4 +157,9 @@ public class UsuarioController {
 
 		return "PerfilAdm";
 	}
+	
+	@GetMapping("/historicoPedidos")
+	public String pedidos() {
+		return "historicoPedidos";
+	}
 }

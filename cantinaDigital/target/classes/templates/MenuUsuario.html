@@ -28,7 +28,9 @@
         <a th:href="@{editarPerfil}">
             <button class="btn btn-light profile-option">Editar Perfil</button>
         </a>
-        <button class="btn btn-light profile-option">Pedidos</button>
+        <a th:href="@{historicoPedidos}">
+        <button class="btn btn-light profile-option">Historico de pedidos</button>
+        </a>
         <button class="btn btn-light profile-option" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Excluir</button>
         <a th:href="@{menuPedidos}">
             <button class="btn btn-light profile-option">Sair</button>
