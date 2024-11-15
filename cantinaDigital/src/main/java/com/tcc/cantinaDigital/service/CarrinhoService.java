@@ -15,11 +15,21 @@ import com.tcc.cantinaDigital.repository.UsuarioRepository;
 @Service
 public class CarrinhoService {
 
-    @Autowired
+	@Autowired
     private UsuarioRepository usuarioRepository;
 
     @Autowired
     private CarrinhoRepository carrinhoRepository;
+
+    public void limparCarrinho(Long usuarioId) {
+        Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        Carrinho carrinho = usuario.getCarrinho();
+        
+        if (carrinho != null) {
+            carrinho.getProdutos().clear();
+            usuarioRepository.save(usuario);
+        }
+    }
 
     public void adicionarAoCarrinho(Long usuarioId, Produto produto) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow();
