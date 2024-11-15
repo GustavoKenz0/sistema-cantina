@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.tcc.cantinaDigital.model.Carrinho;
 import com.tcc.cantinaDigital.model.Usuario;
 import com.tcc.cantinaDigital.repository.UsuarioRepository;
 import com.tcc.cantinaDigital.service.CarrinhoService;
@@ -22,9 +23,20 @@ public class PagamentoController {
 	    private CarrinhoService carrinhoService;
 
 	    @GetMapping("/escolhaPagamento")
-	    public String escolhaPagamento() {
+	    public String escolhaPagamento(Model modelo) {
+	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        String nomeUsuario = authentication.getName();
+	        Usuario usuario = usuarioRepository.findByNomeUsuario(nomeUsuario);
+
+	        Carrinho carrinho = usuario.getCarrinho();
+	        if (carrinho == null || carrinho.getProdutos().isEmpty()) {
+	            modelo.addAttribute("mensagem", "Não é possível finalizar a compra com o carrinho vazio.");
+	            return "redirect:/carrinho";
+	        }
+
 	        return "EscolhaPagamento";
 	    }
+
 	    
 	    @GetMapping("/pagamentoPix")
 	    public String pagamentoPix(Model modelo) {

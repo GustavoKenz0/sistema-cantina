@@ -51,8 +51,14 @@ public class UsuarioController {
 	    String nomeUsuario = authentication.getName();
 	    Usuario usuario = usuarioRepository.findByNomeUsuario(nomeUsuario);
 	    
-	    modelo.addAttribute("carrinho", usuario.getCarrinho());
+	    Carrinho carrinho = usuario.getCarrinho();
+	    modelo.addAttribute("carrinho", carrinho);
 	    modelo.addAttribute("total", carrinhoService.calcularTotalCarrinho(usuario.getIdUsuario()));
+
+	    if (carrinho == null || carrinho.getProdutos().isEmpty()) {
+	        modelo.addAttribute("mensagem", "Seu carrinho está vazio. Não é possível finalizar a compra.");
+	    }
+
 	    return "carrinho";
 	}
 
