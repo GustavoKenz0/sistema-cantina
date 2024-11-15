@@ -1,0 +1,59 @@
+body {
+    background-color: #f6ecd5;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    width: 800px;
+    height: 700px;
+    background-color: #fff;
+    padding: 60px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.payment-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-info {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.payment-amount {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #27ae60;
+    margin-bottom: 40px;
+}
+
+.qr-code img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+}
+
+.btn-cancel {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 20px;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    margin-top: 30px;
+}
