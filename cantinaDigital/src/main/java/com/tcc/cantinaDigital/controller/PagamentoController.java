@@ -61,9 +61,4 @@ public class PagamentoController {
 
 	        return "redirect:/menuPedidos";
 	    }
-	    
-	    @GetMapping("/pedidos")
-		public String pedidos() {
-			return "pedidos";
-		}
 }
