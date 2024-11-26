@@ -21,7 +21,7 @@
     <h1 class="fw-bold">DOCES</h1>
 
     <div class="search-bar d-flex align-items-center mb-4">
-      <input type="text" placeholder="Pesquise aqui">
+      <input type="text" id="searchInput" placeholder="Pesquise aqui" oninput="pesquisarProdutos()">
       <i class="bi bi-search"></i>
     </div>
 
@@ -49,5 +49,23 @@
  <div th:replace="fragments/footerAdm :: footer"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    function pesquisarProdutos() {
+      const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+      const produtos = document.querySelectorAll(".product-item");
+
+      produtos.forEach(produto => {
+        const nomeProduto = produto.querySelector(".product-info h5").textContent.toLowerCase();
+        const descricaoProduto = produto.querySelector(".product-info p").textContent.toLowerCase();
+
+        if (nomeProduto.includes(searchTerm) || descricaoProduto.includes(searchTerm)) {
+          produto.style.display = "block";
+        } else {
+          produto.style.display = "none";
+        }
+      });
+    }
+  </script>
 </body>
 </html>
