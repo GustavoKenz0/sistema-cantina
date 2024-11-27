@@ -31,13 +31,13 @@
     <h5 th:text="${produto.nomeProduto}">Nome do Produto</h5>
     <p th:text="${produto.descriçao}">Descrição do produto</p>
     <p class="product-price" th:text="'R$ ' + ${produto.preço}">R$ 0,00</p>
-    <p class="product-price" th:text="'Estoque: ' + ${produto.estoque}"></p>
+    <p class="product-price1" th:text="'Estoque: ' + ${produto.estoque}"></p>
     <div class="d-flex">
         <form th:action="@{/adicionarAoCarrinho/{id}(id=${produto.id})}" method="post" class="me-2">
-            <button type="submit" class="btn btn-carrinho">Adicionar ao carrinho</button>
+            <button type="submit" class="btn btn-carrinho"><i class="bi bi-cart-fill"></i>Adicionar ao carrinho</button>
         </form>
         <form th:action="@{/favoritar/{id}(id=${produto.id})}" method="post">
-                <button type="submit" class="btn btn-favoritar">Favoritar</button>
+                <button type="submit" class="btn btn-favoritar"><i class="bi bi-heart-fill"></i></button>
             </form>
     </div>
 </div>

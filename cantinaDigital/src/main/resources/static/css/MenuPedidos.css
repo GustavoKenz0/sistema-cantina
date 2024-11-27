@@ -1,29 +1,70 @@
-  body {
-            background-color: #f7e9d7;
-        }
+body {
+    background: #F6F5F0;
+    color: #4a4a4a;
+    font-family: 'Arial', sans-serif;
+}
 
-        .category-card {
-            background-color: #ffc107;
-            border-radius: 30px;
-            text-align: center;
-            padding: 20px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+.category-card {
+    background: #F5C114;
+    border-radius: 30px;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-        .category-card:hover {
-            transform: scale(1.05);
-        }
+.category-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
 
-        .category-card img {
-            width: 100px;
-            height: auto;
-            margin-bottom: 15px;
-        }
+.category-card img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+}
 
-        .category-card h5 {
-            font-weight: bold;
-            color: black;
-        }
-        
+.category-card img[alt="Salgados"] {
+    content: url('https://static.itdg.com.br/images/1200-630/dfc5a3f918dc30f32747b44cd3a18712/pao-de-queijo-facil-e-delicioso-3-.jpg');
+}
+
+.category-card img[alt="Bebidas"] {
+    content: url('https://media.istockphoto.com/id/487787108/pt/foto/lata-de-coca-cola-com-gelo.jpg?s=612x612&w=0&k=20&c=wtS_gNnZgtiObkcfletaXuFztzy6HXRBTpoa6X3UzzM=');
+}
+
+.category-card img[alt="Doces"] {
+    content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJpo17CSl4_gcoA8ccX27uE5GaDCNH6C3oLQ&s');
+}
+
+.category-card h5 {
+    font-weight: bold;
+    color: #4a4a4a;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.category-card:hover h5 {
+    color: #333;
+    transform: scale(1.1);
+}
+
+.category-card button {
+    background-color: #f79c42;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.category-card button:hover {
+    background-color: #f5a623;
+    transform: scale(1.1);
+}

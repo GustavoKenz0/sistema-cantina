@@ -1,5 +1,5 @@
   body {
-      background-color: #f6ecd5;
+      background-color: #F6F5F0;
     }
     .search-bar {
       border: 2px solid #000;
@@ -32,29 +32,55 @@
       flex-grow: 1;
     }
     .product-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--light);
+}
+    }
+    
+    .product-price1 {
       font-weight: bold;
       margin-top: 5px;
       color: #000;
     }
     
-    .btn-carrinho {
-            background-color: #f7b500;
-            border: none;
-            color: white;
-            padding: 10px 0;
-            width: 170px;
-            border-radius: 50px;
-            margin-left: auto;
-        }
-             
-        .btn-favoritar {
-            background-color: #c82333;
-            border: none;
-            color: white;
-            padding: 10px 0;
-            width: 7%;
-            border-radius: 50px;
-            margin-left: auto;
-            width: 100px;
-        }
-        
+   .btn-carrinho {
+    background-color: #f7b500;
+    border: none;
+    color: white; /* Cor do texto branca */
+    padding: 10px 0;
+    width: 170px;
+    border-radius: 50px;
+    margin-left: auto;
+    transition: background-color 0.3s, opacity 0.3s, color 0.3s; /* Transição suave */
+}
+
+.btn-carrinho:hover {
+    background-color: #f7b500; /* Mantém a mesma cor de fundo */
+    opacity: 1; /* Garante que o botão não fique transparente */
+    color: white; /* Garante que a cor do texto continue branca */
+}
+
+/* Estilo do botão Favoritar */
+.btn-favoritar {
+    background-color: #c82333;
+    border: none;
+    color: white; /* Cor do texto branca */
+    padding: 10px 0;
+    width: 7%;
+    border-radius: 50px;
+    margin-left: auto;
+    width: 100px;
+    transition: background-color 0.3s, opacity 0.3s, color 0.3s; /* Transição suave */
+}
+
+.btn-favoritar:hover {
+    background-color: #c82333; /* Mantém a mesma cor de fundo */
+    opacity: 1; /* Garante que o botão não fique transparente */
+    color: white; /* Garante que a cor do texto continue branca */
+}
+
+.cart-button .cart-icon {
+  width: 1rem;
+}
+
